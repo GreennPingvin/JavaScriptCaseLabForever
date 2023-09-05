@@ -7,7 +7,8 @@ const TODOS_KEY = "TODOS";
 const page = {
   addPanel: document.querySelector(".add-panel") as HTMLFormElement,
   main: {
-    todos: document.querySelector(".todos"),
+    todoList: document.querySelector(".todos"),
+    todos: null as NodeListOf<HTMLDivElement>,
   },
 };
 
@@ -17,11 +18,11 @@ interface Todo {
   finished: boolean;
 }
 
-let todos = loadData<Todo[]>(TODOS_KEY) || data;
+let todos: Todo[] = loadData<Todo[]>(TODOS_KEY) || data;
 console.log(todos);
 
-function renderTodos(todos: Todo[]): void {
-  page.main.todos.innerHTML = "";
+function renderTodos(): void {
+  page.main.todoList.innerHTML = "";
   let count = 1;
   for (const todo of todos) {
     const todoElem = document.createElement("li");
@@ -29,30 +30,30 @@ function renderTodos(todos: Todo[]): void {
     todoElem.innerHTML = `
     <div class="todos__number">${count}</div>
     <div class="todos__text">${todo.content}</div>
-    <button class="todos__remove-btn">
-        <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
-             xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 6V18C18 19.1046 17.1046 20 16 20H8C6.89543 20 6 19.1046 6 18V6M15 6V5C15 3.89543 14.1046 3 13 3H11C9.89543 3 9 3.89543 9 5V6M4 6H20M10 10V16M14 10V16"
-                  stroke="#94A3BD" stroke-linecap="round"
-                  stroke-linejoin="round" stroke-width="1.5"/>
-        </svg>
-    </button>`;
+    <button class="btn-primary todos__complete-btn">
+        Завершить
+    </button>
+    <button class="btn-primary todos__remove-btn">
+        Удалить
+    </button>
+`;
     todoElem
       .querySelector(".todos__remove-btn")
       .addEventListener("click", () => {
         todos = todos.filter((item) => item.id !== todo.id);
-        renderTodos(todos);
+        renderTodos();
       });
-    page.main.todos.appendChild(todoElem);
+    page.main.todoList.appendChild(todoElem);
     count++;
   }
-  saveData(TODOS_KEY, todos);
+  page.main.todos = document.querySelectorAll(".todos__item");
+  // saveData(TODOS_KEY, todos);
 }
 
 function addNewTodo(content: string): void {
   const id = todos.at(-1)?.id + 1 || 1;
   todos = [...todos, { id, content, finished: false }];
-  renderTodos(todos);
+  renderTodos();
 }
 
 page.addPanel.addEventListener("submit", (event: SubmitEvent) => {
@@ -65,7 +66,56 @@ page.addPanel.addEventListener("submit", (event: SubmitEvent) => {
   }
 });
 
+function markOddTodos(): void {
+  page.main.todos.forEach((todo: HTMLDivElement, i: number): void => {
+    if (i % 2 === 0) {
+      todo.classList.add("todos__item--active");
+    } else {
+      todo.classList.remove("todos__item--active");
+    }
+  });
+}
+
+function markEvenTodos(): void {
+  page.main.todos.forEach((todo: HTMLDivElement, i: number): void => {
+    if (i % 2 === 1) {
+      todo.classList.add("todos__item--active");
+    } else {
+      todo.classList.remove("todos__item--active");
+    }
+  });
+}
+
+document.querySelector(".todo-buttons__odd").addEventListener("click", () => {
+  markOddTodos();
+});
+document.querySelector(".todo-buttons__even").addEventListener("click", () => {
+  markEvenTodos();
+});
+
+function removeFirstTodo() {
+  todos = todos.filter((todo, i) => i !== 0);
+  renderTodos();
+}
+
+document
+  .querySelector(".todo-buttons__remove-first")
+  .addEventListener("click", () => {
+    removeFirstTodo();
+  });
+
+function removeLastTodo() {
+  todos = todos.filter((todo, i, arr) => i !== arr.length - 1);
+  renderTodos();
+}
+
+document
+  .querySelector(".todo-buttons__remove-last")
+  .addEventListener("click", () => {
+    removeLastTodo();
+  });
+
 /* init */
 (function (): void {
-  renderTodos(todos);
+  renderTodos();
 })();
