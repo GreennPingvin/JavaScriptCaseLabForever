@@ -1,10 +1,11 @@
 import "../scss/index.scss";
 import "../index.html";
 import { data } from "../assets/data/todos.js";
-import { loadData } from "./utils";
+import { loadData, saveData } from "./utils";
 
 const TODOS_KEY = "TODOS";
 const page = {
+  addPanel: document.querySelector(".add-panel") as HTMLFormElement,
   main: {
     todos: document.querySelector(".todos"),
   },
@@ -20,10 +21,13 @@ let todos = loadData<Todo[]>(TODOS_KEY) || data;
 console.log(todos);
 
 function renderTodos(todos: Todo[]): void {
+  page.main.todos.innerHTML = "";
+  let count = 1;
   for (const todo of todos) {
     const todoElem = document.createElement("li");
     todoElem.classList.add("todos__item");
-    todoElem.innerHTML = ` 
+    todoElem.innerHTML = `
+    <div class="todos__number">${count}</div>
     <div class="todos__text">${todo.content}</div>
     <button class="todos__remove-btn">
         <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
@@ -36,12 +40,32 @@ function renderTodos(todos: Todo[]): void {
     todoElem
       .querySelector(".todos__remove-btn")
       .addEventListener("click", () => {
-        page.main.todos.innerHTML = "";
         todos = todos.filter((item) => item.id !== todo.id);
         renderTodos(todos);
       });
     page.main.todos.appendChild(todoElem);
+    count++;
   }
+  saveData(TODOS_KEY, todos);
 }
 
-renderTodos(todos);
+function addNewTodo(content: string): void {
+  const id = todos.at(-1)?.id + 1 || 1;
+  todos = [...todos, { id, content, finished: false }];
+  renderTodos(todos);
+}
+
+page.addPanel.addEventListener("submit", (event: SubmitEvent) => {
+  event.preventDefault();
+  const data = new FormData(event.target as HTMLFormElement);
+  const todoContent = data.get("add-todo") as string;
+  if (todoContent) {
+    addNewTodo(todoContent);
+    page.addPanel.reset();
+  }
+});
+
+/* init */
+(function (): void {
+  renderTodos(todos);
+})();

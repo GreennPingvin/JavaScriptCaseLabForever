@@ -1,0 +1,8 @@
+@mixin todo-item {
+  box-shadow: rgba(17, 17, 26, 0.1) 0 1px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  background-color: #FFF;
+}

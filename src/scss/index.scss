@@ -1,6 +1,7 @@
 @import "reset";
 @import "vars";
 @import "fonts";
+@import "mixins";
 
 body {
   font-family: Comfortaa, sans-serif;
@@ -15,10 +16,13 @@ body {
 }
 
 .container {
+  display: grid;
+  flex-direction: column;
   width: 760px;
   height: 460px;
   padding: 45px;
   background-color: #F3F6FD;
+  grid-template-rows: auto auto 1fr;
 }
 
 .header {
@@ -63,39 +67,35 @@ body {
 }
 
 .main {
-  display: flex;
+  overflow: auto;
 }
 
 .todos {
   flex-grow: 1;
 
   &__item {
-    display: flex;
-    align-items: center;
+    @include todo-item;
     margin: 12px 0;
     padding: 20px;
-    border-radius: 10px;
-    background-color: #FFF;
-    gap: 10px;
-    //&:last-child {
-    //  padding: 10px 10px 10px 20px;
-    //}
+  }
+
+  &__number {
+    display: flex;
+    justify-content: flex-end;
+    width: 30px;
   }
 
   &__text {
     flex-grow: 1;
   }
+}
 
-  &__input-wrapper {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-    padding: 5px 10px 5px 20px;
-    color: #8899A8;
-    border: 1px solid #E7EBFB;
-    border-radius: 9px;
-    gap: 10px;
-  }
+.add-panel {
+  @include todo-item;
+  flex-grow: 1;
+  padding: 10px 10px 10px 20px;
+  color: #8899A8;
+  border: 1px solid #E7EBFB;
 
   &__input {
     flex-grow: 1;
