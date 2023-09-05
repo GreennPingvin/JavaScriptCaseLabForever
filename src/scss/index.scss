@@ -1,3 +1,114 @@
 @import "reset";
 @import "vars";
 @import "fonts";
+
+body {
+  font-family: Comfortaa, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #232360;
+  background-color: black;
+}
+
+.container {
+  width: 760px;
+  height: 460px;
+  padding: 45px;
+  background-color: #F3F6FD;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 36px;
+}
+
+.main-title {
+  font-size: 30px;
+  font-weight: 400;
+  color: #000;
+}
+
+.progress {
+  font-size: 14px;
+  width: 235px;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  &__title {
+  }
+
+  &__percent {
+  }
+
+  &__bar {
+    height: 5px;
+    border-radius: 4px;
+    background-color: #E6E9ED;
+  }
+
+  &__current {
+    width: 80%;
+    height: 100%;
+    background-color: #5051F9;
+  }
+}
+
+.main {
+  display: flex;
+}
+
+.todos {
+  flex-grow: 1;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    margin: 12px 0;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #FFF;
+    gap: 10px;
+
+    &:last-child {
+      padding: 10px 10px 10px 20px;
+    }
+  }
+
+  &__text {
+    flex-grow: 1;
+  }
+
+  &__input-wrapper {
+    display: flex;
+    flex-grow: 1;
+    padding: 10px;
+    color: #8899A8;
+    border: 1px solid #E7EBFB;
+    border-radius: 9px;
+    gap: 10px;
+  }
+
+  &__input {
+    flex-grow: 1;
+    height: 100%;
+    border: none;
+  }
+
+  &__ready-btn {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 12px 32px;
+    color: #5051F9;
+    border-radius: 9px;
+    background: #EDECFE;
+  }
+}
