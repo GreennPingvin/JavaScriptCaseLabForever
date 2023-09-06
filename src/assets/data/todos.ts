@@ -1,4 +1,6 @@
-const data = [
+import { Todo } from "../../ts/types";
+
+const data: Todo[] = [
   {
     id: 1,
     content: "Выучить HTMl, CSS и JavaScript",

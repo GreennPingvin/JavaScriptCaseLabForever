@@ -16,7 +16,7 @@ module.exports = {
   mode,
   target,
   devtool,
-  entry: path.resolve(__dirname, "src/js/index.ts"),
+  entry: path.resolve(__dirname, "src/ts/index.ts"),
   output: {
     filename: getFileName("js"),
     path: path.resolve(__dirname, "dist"),
