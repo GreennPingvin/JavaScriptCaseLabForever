@@ -1,6 +1,6 @@
 import "../scss/index.scss";
 import "../index.html";
-import { data } from "../assets/data/todos.js";
+import { data } from "../assets/data/todos";
 import { loadData, saveData } from "./utils";
 
 const TODOS_KEY = "TODOS";
@@ -47,7 +47,7 @@ function renderTodos(): void {
     count++;
   }
   page.main.todos = document.querySelectorAll(".todos__item");
-  // saveData(TODOS_KEY, todos);
+  saveData(TODOS_KEY, todos);
 }
 
 function addNewTodo(content: string): void {
