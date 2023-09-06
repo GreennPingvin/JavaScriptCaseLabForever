@@ -91,7 +91,7 @@ function markTodos(parity: TodoParity): void {
     return;
   }
   page.main.todos.forEach((todo: HTMLDivElement, i: number): void => {
-    if (i % 2 === (parity === "odd" ? 1 : 0)) {
+    if (i % 2 === (parity === "odd" ? 0 : 1)) {
       todo.classList.add("todos__item--marked");
     } else {
       todo.classList.remove("todos__item--marked");
