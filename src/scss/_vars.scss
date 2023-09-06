@@ -7,7 +7,12 @@
   --main-title-color: #000000;
 
   --btn-primary-text-color: #5051F9;
-  --btn-primary-bacground-color: #EDECFE;
+  --btn-secondary-text-color: var(--btn-primary-background-color);
+  --btn-remove-text-color: #F9507D;
+
+  --btn-primary-background-color: #EDECFE;
+  --btn-secondary-background-color: var(--btn-primary-text-color);
+  --btn-remove-background-color: #FEECF1;
 
   --border-color: #E7EBFB
 

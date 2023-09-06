@@ -14,7 +14,9 @@
         <div class="progress">
             <div class="progress__top">
                 <div class="progress__title">Прогресс</div>
-                <div class="progress__percent">80%</div>
+                <div class="progress__percent">
+                    <span class="progress__percent-text"></span>%
+                </div>
             </div>
             <div class="progress__bar">
                 <div class="progress__current"></div>
@@ -34,18 +36,18 @@
                name="add-todo"
                placeholder="Enter new todo"
                type="text">
-        <button class="btn-primary add-panel__ready-btn" type="submit">Готово
+        <button class="btn" type="submit">Готово
         </button>
     </form>
     <div class="todo-buttons">
-        <button class="btn-primary todo-buttons__even">Отметить четные</button>
-        <button class="btn-primary todo-buttons__odd">
+        <button class="btn todo-buttons__even">Отметить четные</button>
+        <button class="btn todo-buttons__odd">
             Отметить нечетные
         </button>
-        <button class="btn-primary todo-buttons__remove-first">Удалить первую
+        <button class="btn todo-buttons__remove-first">Удалить первую
             задачу
         </button>
-        <button class="btn-primary todo-buttons__remove-last">Удалить последнюю
+        <button class="btn todo-buttons__remove-last">Удалить последнюю
             задачу
         </button>
     </div>
