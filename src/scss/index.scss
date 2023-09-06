@@ -11,18 +11,18 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  color: #232360;
-  background-color: black;
+  color: var(--primary-text-color);
+  background-color: var(--background-color);
 }
 
 .container {
   display: grid;
+  grid-template-rows: repeat(3, auto) 1fr;
   flex-direction: column;
   width: 760px;
   height: 700px;
   padding: 45px;
-  background-color: #F3F6FD;
-  grid-template-rows: repeat(3, auto) 1fr;
+  background-color: var(--app-background-color);
 }
 
 .header {
@@ -34,16 +34,16 @@ body {
 .main-title {
   font-size: 30px;
   font-weight: 400;
-  color: #000;
+  color: var(--main-title-color);
 }
 
 .btn-primary {
   font-size: 13px;
   font-weight: 500;
   padding: 10px 18px;
-  color: #5051F9;
+  color: var(--btn-primary-text-color);
   border-radius: 9px;
-  background: #EDECFE;
+  background: var(--btn-primary-bacground-color);
 }
 
 .progress {
@@ -71,7 +71,7 @@ body {
   &__current {
     width: 80%;
     height: 100%;
-    background-color: #5051F9;
+    background-color: var(--btn-primary-text-color);
   }
 }
 
@@ -86,11 +86,6 @@ body {
     @include todo-item;
     margin: 12px 0;
     padding: 20px;
-
-    &--active {
-      color: #F3F6FD;
-      background-color: #5051F9;
-    }
   }
 
   &__number {
@@ -109,14 +104,13 @@ body {
   flex-grow: 1;
   margin-bottom: 22px;
   padding: 10px 10px 10px 20px;
-  color: #8899A8;
-  border: 1px solid #E7EBFB;
+  border: 1px solid var(--border-color);
 
   &__input {
     flex-grow: 1;
     height: 30px;
     padding: 0 10px;
-    color: #232360;
+    color: var(--primary-text-color);
     border: none;
   }
 
