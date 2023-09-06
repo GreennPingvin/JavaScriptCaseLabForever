@@ -138,7 +138,7 @@ function sortTodos(): void {
   todos.forEach((todo) =>
     todo.finished ? finishedTodos.push(todo) : activeTodos.push(todo),
   );
-  todos = [...activeTodos, ...finishedTodos];
+  todos = [...activeTodos, ...finishedTodos.reverse()];
 }
 
 /* Updating progress */

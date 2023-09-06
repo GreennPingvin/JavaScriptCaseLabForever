@@ -2,16 +2,6 @@ import { Todo } from "../../ts/types";
 
 const data: Todo[] = [
   {
-    id: 1,
-    content: "Выучить HTMl, CSS и JavaScript",
-    finished: true,
-  },
-  {
-    id: 2,
-    content: "Сделать тестовое задание и пройти тест",
-    finished: true,
-  },
-  {
     id: 3,
     content: "Пройти предстажировку в компании Гринатом",
     finished: false,
@@ -25,6 +15,16 @@ const data: Todo[] = [
     id: 5,
     content: "Получить оффер в компании Гринатом",
     finished: false,
+  },
+  {
+    id: 1,
+    content: "Выучить HTMl, CSS и JavaScript",
+    finished: true,
+  },
+  {
+    id: 2,
+    content: "Сделать тестовое задание и пройти тест",
+    finished: true,
   },
 ];
 
