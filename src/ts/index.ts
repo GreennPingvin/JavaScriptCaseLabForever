@@ -2,6 +2,7 @@ import "../scss/index.scss";
 import "../index.html";
 import { data } from "../assets/data/todos";
 import { loadData, saveData } from "./utils";
+import { Todo, TodoParity } from "./types";
 
 const TODOS_KEY = "TODOS";
 const page = {
@@ -12,14 +13,8 @@ const page = {
   },
 };
 
-interface Todo {
-  id: number;
-  content: string;
-  finished: boolean;
-}
-
 let todos: Todo[] = loadData<Todo[]>(TODOS_KEY) || data;
-console.log(todos);
+let todoParity: TodoParity = null;
 
 function renderTodos(): void {
   page.main.todoList.innerHTML = "";
@@ -41,7 +36,7 @@ function renderTodos(): void {
       .querySelector(".todos__remove-btn")
       .addEventListener("click", () => {
         todos = todos.filter((item) => item.id !== todo.id);
-        renderTodos();
+        render();
       });
     page.main.todoList.appendChild(todoElem);
     count++;
@@ -53,7 +48,7 @@ function renderTodos(): void {
 function addNewTodo(content: string): void {
   const id = todos.at(-1)?.id + 1 || 1;
   todos = [...todos, { id, content, finished: false }];
-  renderTodos();
+  render();
 }
 
 page.addPanel.addEventListener("submit", (event: SubmitEvent) => {
@@ -66,36 +61,30 @@ page.addPanel.addEventListener("submit", (event: SubmitEvent) => {
   }
 });
 
-function markOddTodos(): void {
+function markTodos(parity: TodoParity): void {
+  if (parity === null) {
+    return;
+  }
   page.main.todos.forEach((todo: HTMLDivElement, i: number): void => {
-    if (i % 2 === 0) {
+    if (i % 2 === (parity === "odd" ? 1 : 0)) {
       todo.classList.add("todos__item--active");
     } else {
       todo.classList.remove("todos__item--active");
     }
-  });
-}
-
-function markEvenTodos(): void {
-  page.main.todos.forEach((todo: HTMLDivElement, i: number): void => {
-    if (i % 2 === 1) {
-      todo.classList.add("todos__item--active");
-    } else {
-      todo.classList.remove("todos__item--active");
-    }
+    todoParity = parity;
   });
 }
 
 document.querySelector(".todo-buttons__odd").addEventListener("click", () => {
-  markOddTodos();
+  markTodos("odd");
 });
 document.querySelector(".todo-buttons__even").addEventListener("click", () => {
-  markEvenTodos();
+  markTodos("even");
 });
 
 function removeFirstTodo() {
   todos = todos.filter((todo, i) => i !== 0);
-  renderTodos();
+  render();
 }
 
 document
@@ -106,7 +95,7 @@ document
 
 function removeLastTodo() {
   todos = todos.filter((todo, i, arr) => i !== arr.length - 1);
-  renderTodos();
+  render();
 }
 
 document
@@ -115,7 +104,12 @@ document
     removeLastTodo();
   });
 
+function render(): void {
+  renderTodos();
+  markTodos(todoParity);
+}
+
 /* init */
 (function (): void {
-  renderTodos();
+  render();
 })();
