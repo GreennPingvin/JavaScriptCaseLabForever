@@ -53,7 +53,7 @@ function renderTodos(): void {
 
     todoElem
       .querySelector(".todos__btn-finish")
-      .addEventListener("click", function () {
+      .addEventListener("click", () => {
         todo.finished = !todo.finished;
         render();
       });
@@ -81,8 +81,8 @@ page.addPanel.addEventListener("submit", (event: SubmitEvent) => {
   if (todoContent) {
     addNewTodo(todoContent);
     page.addPanel.reset();
+    render();
   }
-  render();
 });
 
 /* Marking todos by parity */
