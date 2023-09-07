@@ -55,6 +55,8 @@ function renderTodos(): void {
       .querySelector(".todos__btn-finish")
       .addEventListener("click", () => {
         todo.finished = !todo.finished;
+        const maxId = todos.reduce((a, b) => (a.id > b.id ? a : b)).id;
+        todo.id = todo.id === maxId ? maxId : maxId + 1;
         render();
       });
 
@@ -138,7 +140,7 @@ function sortTodos(): void {
   todos.forEach((todo) =>
     todo.finished ? finishedTodos.push(todo) : activeTodos.push(todo),
   );
-  todos = [...activeTodos, ...finishedTodos];
+  todos = [...activeTodos, ...finishedTodos.sort((a, b) => a.id - b.id)];
 }
 
 /* Updating progress */
