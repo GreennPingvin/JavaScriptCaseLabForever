@@ -64,7 +64,7 @@ function renderTodos(): void {
 
   // write todos elements to the global object
   page.main.todos = document.querySelectorAll(".todos__item");
-  saveData(TODOS_KEY, todos);
+  process.env.NODE_ENV === "production" && saveData(TODOS_KEY, todos);
 }
 
 /* Creating a new todo and adding it to todos */
@@ -138,7 +138,7 @@ function sortTodos(): void {
   todos.forEach((todo) =>
     todo.finished ? finishedTodos.push(todo) : activeTodos.push(todo),
   );
-  todos = [...activeTodos, ...finishedTodos.reverse()];
+  todos = [...activeTodos, ...finishedTodos];
 }
 
 /* Updating progress */

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack serve",
+    "start:prod": "webpack serve --node-env=production",
     "build:dev": "webpack",
     "build:prod": "webpack --node-env=production",
     "clear": "rd /s /q dist"
