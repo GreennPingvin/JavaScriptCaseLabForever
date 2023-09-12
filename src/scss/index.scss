@@ -13,7 +13,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 30px;
   color: var(--primary-text-color);
   background: var(--background-color);
 }
@@ -22,8 +23,8 @@ body {
   display: grid;
   grid-template-rows: repeat(3, auto) 1fr;
   flex-direction: column;
-  width: 760px;
-  height: 700px;
+  min-width: 860px;
+  height: 900px;
   padding: 45px;
   background-color: var(--app-background-color);
 }
