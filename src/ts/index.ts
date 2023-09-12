@@ -1,5 +1,6 @@
 import "../scss/index.scss";
 import "../index.html";
+import "./themeSwitcher";
 import { data } from "../assets/data/todos";
 import { loadData, saveData } from "./utils";
 import { Todo, TodoParity } from "./types";

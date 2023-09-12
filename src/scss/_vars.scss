@@ -1,19 +1,5 @@
 :root {
-  --background-color: black;
-  --app-background-color: #F3F6FD;
-
-  --primary-text-color: #232360;
-
-  --main-title-color: #000000;
-
-  --btn-primary-text-color: #5051F9;
-  --btn-secondary-text-color: var(--btn-primary-background-color);
-  --btn-remove-text-color: #F9507D;
-
-  --btn-primary-background-color: #EDECFE;
-  --btn-secondary-background-color: var(--btn-primary-text-color);
-  --btn-remove-background-color: #FEECF1;
-
-  --border-color: #E7EBFB
-
+  // theme switcher
+  --theme-switcher-width: 28px;
+  --theme-switcher-height: var(--theme-switcher-width);
 }

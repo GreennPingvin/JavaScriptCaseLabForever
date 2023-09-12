@@ -2,6 +2,9 @@
 @import "vars";
 @import "fonts";
 @import "mixins";
+@import "themes/light";
+@import "themes/dark";
+@import "themeSwitcher";
 
 body {
   font-family: Comfortaa, sans-serif;
@@ -12,10 +15,10 @@ body {
   justify-content: center;
   height: 100vh;
   color: var(--primary-text-color);
-  background-color: var(--background-color);
+  background: var(--background-color);
 }
 
-.container {
+.app {
   display: grid;
   grid-template-rows: repeat(3, auto) 1fr;
   flex-direction: column;
@@ -27,14 +30,15 @@ body {
 
 .header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin-bottom: 36px;
+  gap: 15px;
 }
 
 .main-title {
   font-size: 30px;
   font-weight: 400;
-  color: var(--main-title-color);
 }
 
 .btn {
@@ -69,12 +73,6 @@ body {
     margin-bottom: 12px;
   }
 
-  &__title {
-  }
-
-  &__percent {
-  }
-
   &__bar {
     height: 5px;
     border-radius: 4px;
@@ -93,15 +91,15 @@ body {
 }
 
 .todos {
-
   &__item {
     @include todo-item;
     margin: 12px 0;
     padding: 20px;
+    color: var(--todo-text-color);
     gap: 30px;
 
     &--marked {
-      background-color: #ededf6;
+      background-color: var(--marked-todo-color);
     }
   }
 
