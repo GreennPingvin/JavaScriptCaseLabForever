@@ -6,25 +6,26 @@
 @import "themes/dark";
 @import "themeSwitcher";
 
-body {
+#app {
   font-family: Comfortaa, sans-serif;
   font-size: 16px;
   font-weight: 400;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+  overflow: auto;
+  height: 100vh;
   padding: 30px;
   color: var(--primary-text-color);
   background: var(--background-color);
 }
 
-.app {
-  display: grid;
-  grid-template-rows: repeat(3, auto) 1fr;
+.container {
+  display: flex;
   flex-direction: column;
-  min-width: 860px;
-  height: 900px;
+  flex-shrink: 0;
+  justify-content: center;
+  width: 830px;
+  height: 790px;
+  margin: auto;
   padding: 45px;
   background-color: var(--app-background-color);
 }
@@ -87,11 +88,10 @@ body {
   }
 }
 
-.main {
-  overflow: auto;
-}
-
 .todos {
+  overflow: auto;
+  height: 460px;
+
   &__item {
     @include todo-item;
     margin: 12px 0;
@@ -123,7 +123,6 @@ body {
 
 .add-panel {
   @include todo-item;
-  flex-grow: 1;
   margin-bottom: 22px;
   padding: 10px 10px 10px 20px;
   border: 1px solid var(--border-color);
@@ -134,9 +133,6 @@ body {
     padding: 0 10px;
     color: var(--input-color);
     border: none;
-  }
-
-  &__btn {
   }
 }
 
