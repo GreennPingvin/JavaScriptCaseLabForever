@@ -1,5 +1,5 @@
 //elements
-const switcherCheckbox = document.querySelector(".switcher__input");
+const switcherInput = document.querySelector(".switcher__input");
 const body = document.body;
 
 const THEME_KEY = "themeName";
@@ -7,7 +7,7 @@ const LIGHT_THEME = "light";
 const DARK_THEME = "dark";
 
 //events
-switcherCheckbox.addEventListener("change", () => toggleTheme());
+switcherInput.addEventListener("change", () => toggleTheme());
 
 //functions
 function setTheme(themeName: string) {
@@ -35,9 +35,7 @@ function init() {
     themeName = LIGHT_THEME;
   }
   setTheme(themeName);
-  if (themeName === LIGHT_THEME) {
-    (switcherCheckbox as HTMLInputElement).checked = false;
-  }
+  (switcherInput as HTMLInputElement).checked = themeName !== LIGHT_THEME;
 }
 
 (function () {
