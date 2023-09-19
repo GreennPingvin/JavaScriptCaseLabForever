@@ -7,8 +7,8 @@
 **npm start** - to start the project in the development mode\
 **npm run start:prod** - to start the project in the production mode\
 \
-**npm run build:dev** - to build the project in the development mode\
-**npm run build:prod** - to build the project in the production mode\
+**npm run dev** - to build the project in the development mode\
+**npm run build** - to build the project in the production mode\
 \
 **npm run clear** - to clear the dist directory
 
