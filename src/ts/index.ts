@@ -72,7 +72,13 @@ function renderTodos(): void {
 
 /* Creating a new todo and adding it to todos */
 function addNewTodo(content: string): void {
-  const id = todos.reduce((a, b) => (a.id > b.id ? a : b)).id + 1 || 1;
+  let id;
+  if (todos.length === 0) {
+    id = 1;
+  } else {
+    id = todos.reduce((a, b) => (a.id > b.id ? a : b)).id + 1;
+  }
+
   todos = [...todos, { id, content, finished: false }];
 }
 
